@@ -1,20 +1,27 @@
-const escreve = document.querySelector("#textoHeader");
-const nome = "BRYAN";
-
-const escreveNome = (pos)=>{
-    if(pos < nome.length){
-        let saida = "";
-   for(let i=0; i <= pos; i++){
-    saida += nome[i];
-    setTimeout(() => {
-        escreve.innerHTML = saida;
-        pos++;
-        escreveNome(pos);
-    }, 1000);
-   }
-}
-} 
+const btn = document.querySelector("#btnLoguin");
+const inputUsuario = document.querySelector("#usuario");
+const inputSenha = document.querySelector("#senha");
 
 (()=>{
-    escreveNome(0);
+    let usuario = localStorage.getItem("usuario");
+    if(usuario){
+        Window.Location.href = "http://www.uou.com.br";
+    }
 })();
+
+btn.onclick = (e) =>{
+    let usuario = inputUsuario.value;
+    let senha = inputSenha.value;
+    if(!usuario && !senha){
+        inputUsuario.focus();
+        return;
+    }
+    if(usuario === "carmed"){
+        if(senha === "123"){
+            localStorage.setItem("usario",usuario);
+            Window.Location.href = "http://www.uou.com.br";
+        }else{
+            inputUsuario.focus();
+        }
+    }
+}
